@@ -60,6 +60,16 @@
         <input type="range" id="brightness-range" min="50" max="150" value="100" style="width: 60%;">
     </div>
     <h1> MOVIE RECOMMENDATIONS </h1>
+    <h1 style="font-family: 'Courier New', Courier, monospace; color: #333;">MyFlixerz</h1>
+    <div style="text-align:center; margin: 20px 0;">
+        <button id="play-mjuza" style="padding:10px 24px; background:#0074D9; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
+            Play Music
+        </button>
+        <audio id="mjuza-audio" style="display:none;">
+            <source src="mjuza.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
     <table id="action-table" style="margin: 0 auto; width: 50%;">
         <tr>
             <th id="action-header" style="text-align:center;">ACTION</th>
@@ -118,6 +128,15 @@
         <button style="margin-top:8px; padding:6px 18px; border:none; background:#0074D9; color:white; font-weight:bold; border-radius:4px; cursor:pointer;">Submit</button>
     </div>
     <!-- --- End Highlighted --- -->
+    <div style="text-align:center; margin: 30px 0;">
+       <img src="fc36cafd4286617ce78614d429ee6390.jpg" alt="" style="max-width:200px; width:100%; height:auto; border:2px solid #333; background:#fff;">
+       <br>
+       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+           <button style="padding:10px 24px; background:#28a745; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
+               Suprisee
+           </button>
+       </a>
+    </div>
     <footer style="text-align:center; color:white; margin-top:30px;">
         <a href="https://myflixerz.to/" target="_blank">
             <button style="padding:10px 24px; background:#0074D9; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
@@ -127,9 +146,6 @@
         <br><br>
         &copy; 2024 Movie Recommendations. All rights reserved.
     </footer>
-    <div style="text-align:center; margin: 30px 0;">
-       
-    </div>
     <script>
         /* --- Highlighted: Smooth scroll to the selected genre table --- */
         document.addEventListener('DOMContentLoaded', function() {
@@ -165,6 +181,25 @@
             const brightnessSlider = document.getElementById('brightness-range');
             brightnessSlider.addEventListener('input', function() {
                 document.body.style.filter = `brightness(${brightnessSlider.value}%)`;
+            });
+
+            // Play/pause music button logic
+            const playBtn = document.getElementById('play-mjuza');
+            const audio = document.getElementById('mjuza-audio');
+            let isPlaying = false;
+            playBtn.addEventListener('click', function() {
+                if (!isPlaying) {
+                    audio.play();
+                    playBtn.textContent = "Pause Music";
+                } else {
+                    audio.pause();
+                    playBtn.textContent = "Play Music";
+                }
+                isPlaying = !isPlaying;
+            });
+            audio.addEventListener('ended', function() {
+                playBtn.textContent = "Play Music";
+                isPlaying = false;
             });
         });
         /* --- End Highlighted --- */
