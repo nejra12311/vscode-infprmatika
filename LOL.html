@@ -1,21 +1,174 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title> cas informatike </title>
-</head>
-<body>
-    <h1> IME STRANICE</h4>
-    <p> we have to cook jessie</p>
     <style>
-        body {
-            background-color: rgb(155, 118, 241);
-        }
         h1 {
-            color: rgba(30, 58, 97, 0.801);
-            font-size: 50px;
             text-align: center;
         }
+        body {
+            background-color: #add8e6;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
-    <img src="OIP.jpg" alt="slika" width="300" height="200">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li>
+                    <label for="genre-select" style="color:white; font-weight:bold;">Genres:</label>
+                    <select id="genre-select" style="margin-left:5px;">
+                        <option value="Action">Action</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Animated">Animated</option>
+                    </select>
+                </li>
+                <li><a href="#">Top Picks</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Brightness control slider -->
+    <div style="width: 50%; margin: 20px auto; text-align: center;">
+        <label for="brightness-range" style="font-weight:bold; color:#333;">Brightness:</label>
+        <input type="range" id="brightness-range" min="50" max="150" value="100" style="width: 60%;">
+    </div>
+    <h1> MOVIE RECOMMENDATIONS </h1>
+    <table id="action-table" style="margin: 0 auto; width: 50%;">
+        <tr>
+            <th id="action-header" style="text-align:center;">ACTION</th>
+        </tr>
+        <tr><td>Avengers: Endgame</td></tr>
+        <tr><td>The Dark Knight</td></tr>
+        <tr><td>Gladiator</td></tr>
+        <tr><td>Mad Max: Fury Road</td></tr>
+        <tr><td>John Wick</td></tr>
+    </table>
+    <table id="drama-table" style="margin: 30px auto 0 auto; width: 50%;">
+        <tr>
+            <th id="drama-header" style="text-align:center;">DRAMA</th>
+        </tr>
+        <tr><td>The Shawshank Redemption</td></tr>
+        <tr><td>Forrest Gump</td></tr>
+        <tr><td>The Godfather</td></tr>
+        <tr><td>Schindler's List</td></tr>
+        <tr><td>Fight Club</td></tr>
+    </table>
+    <table id="comedy-table" style="margin: 30px auto 0 auto; width: 50%;">
+        <tr>
+            <th id="comedy-header" style="text-align:center;">COMEDY</th>
+        </tr>
+        <tr><td>Forrest Gump</td></tr>
+        <tr><td>The Big Lebowski</td></tr>
+        <tr><td>Superbad</td></tr>
+        <tr><td>Monty Python and the Holy Grail</td></tr>
+        <tr><td>Groundhog Day</td></tr>
+    </table>
+    <table id="horror-table" style="margin: 30px auto 0 auto; width: 50%;">
+        <tr>
+            <th id="horror-header" style="text-align:center;">HORROR</th>
+        </tr>
+        <tr><td>The Exorcist</td></tr>
+        <tr><td>Get Out</td></tr>
+        <tr><td>A Nightmare on Elm Street</td></tr>
+        <tr><td>The Conjuring</td></tr>
+        <tr><td>Hereditary</td></tr>
+    </table>
+    <table id="animated-table" style="margin: 30px auto 0 auto; width: 50%;">
+        <tr>
+            <th id="animated-header" style="text-align:center;">ANIMATED</th>
+        </tr>
+        <tr><td>The Lion King</td></tr>
+        <tr><td>Spirited Away</td></tr>
+        <tr><td>Toy Story</td></tr>
+        <tr><td>Finding Nemo</td></tr>
+        <tr><td>Shrek</td></tr>
+    </table>
+    <!-- --- Highlighted: Movie Review Section --- -->
+    <div style="width: 50%; margin: 20px auto; text-align: center;">
+        <label for="movie-review" style="font-weight:bold; color:#333;">Review a Movie:</label><br>
+        <textarea id="movie-review" rows="4" cols="50" placeholder="Write your review here..." style="margin-top:8px; width:100%;"></textarea>
+        <br>
+        <button style="margin-top:8px; padding:6px 18px; border:none; background:#0074D9; color:white; font-weight:bold; border-radius:4px; cursor:pointer;">Submit</button>
+    </div>
+    <!-- --- End Highlighted --- -->
+    <footer style="text-align:center; color:white; margin-top:30px;">
+        <a href="https://myflixerz.to/" target="_blank">
+            <button style="padding:10px 24px; background:#0074D9; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
+                Go to MyFlixerz
+            </button>
+        </a>
+        <br><br>
+        &copy; 2024 Movie Recommendations. All rights reserved.
+    </footer>
+    <div style="text-align:center; margin: 30px 0;">
+       
+    </div>
+    <script>
+        /* --- Highlighted: Smooth scroll to the selected genre table --- */
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('genre-select');
+            select.addEventListener('change', function() {
+                let targetId = '';
+                switch (select.value) {
+                    case 'Action':
+                        targetId = 'action-header';
+                        break;
+                    case 'Drama':
+                        targetId = 'drama-header';
+                        break;
+                    case 'Comedy':
+                        targetId = 'comedy-header';
+                        break;
+                    case 'Horror':
+                        targetId = 'horror-header';
+                        break;
+                    case 'Animated':
+                        targetId = 'animated-header';
+                        break;
+                }
+                if (targetId) {
+                    const el = document.getElementById(targetId);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+
+            // Brightness control logic
+            const brightnessSlider = document.getElementById('brightness-range');
+            brightnessSlider.addEventListener('input', function() {
+                document.body.style.filter = `brightness(${brightnessSlider.value}%)`;
+            });
+        });
+        /* --- End Highlighted --- */
+    </script>
 </body>
 </html>
+
